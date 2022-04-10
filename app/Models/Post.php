@@ -11,4 +11,10 @@ class Post extends Model
 
     protected $guarded = ['id'];
     // protected $fillable = ['title', 'category_id', 'excerpt', 'body'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+        //satu post hanya bisa memliki 1 category
+    }
 }
