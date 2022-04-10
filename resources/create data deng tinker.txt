@@ -1,0 +1,13 @@
+Category::create
+([ 
+    'name' => 'PErsonal', 
+    'slug' => 'personal' 
+]) 
+
+Post::create([
+    'title' => 'Judul 1', 
+    'category_id' => 1, 
+    'slug' => 'judul-satu', 
+    'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In, hic? Voluptatem',
+    'body' => '<p>afsdnjfndakj fkandfkjanfjkna nfakndfiuhef oaeov dvuipv ihuief aiq ii akjdnfiu njkn kaiuf iuadhf dankjf dihfiud kjen hfiuahg knaguihguifuiah hgiakjndg kjanuighai dngjkan giu anf igaigh iuanfjgkand fkjgnaiuhg iarugajkhguiah iuga hguh</p><p>snafisadn kjanfkjaifu ifqorq a  pad ahari nminggu kuturut ayah kekota naik delma n istimewa kuduuduk dimuka kuduuku k dismaping pak kusir yang sedang bekernha nmenghenadarai sempautuy supaya baik ajalan nya tukitakituk kitak itu ak saiashf difndaknkf kajdsnfa fnkadhiuui asi haiuafuiha fafih as</p>'
+])
