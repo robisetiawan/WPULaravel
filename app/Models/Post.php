@@ -12,6 +12,8 @@ class Post extends Model
     protected $guarded = ['id'];
     // protected $fillable = ['title', 'category_id', 'excerpt', 'body'];
 
+    protected $with = ['category', 'author']; //tambahkn with agar tidk bnyk melakukan query (fiture=eager loading)
+
     public function category()
     {
         return $this->belongsTo(Category::class);

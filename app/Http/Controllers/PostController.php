@@ -11,7 +11,8 @@ class PostController extends Controller
     {
         return view('posts', [
             "title" => "All Posts",
-            "posts" => Post::with(['author', 'category'])->latest()->get() //tambahkn with agar tidk bnyk melakukan query (fiture=eager loading)
+            // "posts" => Post::with(['author', 'category'])->latest()->get() //tambahkn with agar tidk bnyk melakukan query (fiture=eager loading)
+            "posts" => Post::latest()->get()
         ]);
     }
 
