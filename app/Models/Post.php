@@ -17,9 +17,9 @@ class Post extends Model
         return $this->belongsTo(Category::class);
         //satu post hanya bisa memliki 1 category
     }
-    public function user()
+    public function author() //author = user_id
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id'); //user_id diubah menjadi author
         //satu post hanya bisa memliki 1 category
     }
 }

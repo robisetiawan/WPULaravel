@@ -8,7 +8,7 @@
                 <a href="/posts/{{ $post->slug }}" class="text-decoration-none">{{ $post->title }}</a>
             </h2>
             {{-- <h5>By : Robi Setiawan {{ $post->author }}</h5> --}}
-            <h5>By <a href="{{ $post->user->name }}">{{ $post->user->name }}</a> in <a
+            <h5>By <a href="/authors/{{ $post->author->username }}">{{ $post->author->name }}</a> in <a
                     href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a></h5>
             {!! $post->excerpt !!} {{-- menjalankan script html jg --}}
 
