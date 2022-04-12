@@ -1,7 +1,31 @@
 @extends('layouts.main')
 
 @section('content')
-    <h1 class="mb-5">{{ $title }}</h1>
+    <h1 class="mb-5 text-center">{{ $title }}</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form action="/posts">
+
+                @if (request('category'))
+                    <input type="hidden" name="category" value="{{ request('category') }}">
+                @endif
+
+                @if (request('author'))
+                    <input type="hidden" name="author" value="{{ request('author') }}">
+                @endif
+
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search...." name="search"
+                        value="{{ request('search') }}">
+                    <button class="btn btn-danger" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
 
     @if ($posts->count())
         <div class="card mb-3">
@@ -10,28 +34,33 @@
             <div class="card-body text-center">
                 <h3 class="card-title">{{ $posts[0]->title }}</h3>
                 <small class="text-muted">
-                    By <a href="/authors/{{ $posts[0]->author->username }}">{{ $posts[0]->author->name }}</a> in <a
-                        href="/categories/{{ $posts[0]->category->slug }}">{{ $posts[0]->category->name }}</a>{{ $posts[0]->created_at->diffForHumans() }}
+                    By <a href="/posts?author={{ $posts[0]->author->username }}">{{ $posts[0]->author->name }}</a> in
+                    <a
+                        href="/posts?category={{ $posts[0]->category->slug }}">{{ $posts[0]->category->name }}</a>{{ $posts[0]->created_at->diffForHumans() }}
 
                 </small>
                 <p class="card-text">{{ $posts[0]->excerpt }}</p>
 
             </div>
         </div>
+
+
+        @foreach ($posts->skip(1) as $post)
+            <article class="mb-5 border-bottom">
+                <h2>
+                    <a href="/posts/{{ $post->slug }}" class="text-decoration-none">{{ $post->title }}</a>
+                </h2>
+                {{-- <h5>By : Robi Setiawan {{ $post->author }}</h5> --}}
+                <h5>By <a href="/posts?author={{ $post->author->username }}">{{ $post->author->name }}</a> in <a
+                        href="/posts?category={{ $post->category->slug }}">{{ $post->category->name }}</a></h5>
+                {!! $post->excerpt !!} {{-- menjalankan script html jg --}}
+
+            </article>
+        @endforeach
     @else
         <p class="text-center fs-4">No Posts Found</p>
     @endif
 
-    @foreach ($posts->skip(1) as $post)
-        <article class="mb-5 border-bottom">
-            <h2>
-                <a href="/posts/{{ $post->slug }}" class="text-decoration-none">{{ $post->title }}</a>
-            </h2>
-            {{-- <h5>By : Robi Setiawan {{ $post->author }}</h5> --}}
-            <h5>By <a href="/authors/{{ $post->author->username }}">{{ $post->author->name }}</a> in <a
-                    href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a></h5>
-            {!! $post->excerpt !!} {{-- menjalankan script html jg --}}
+    {{ $posts->links() }}
 
-        </article>
-    @endforeach
 @endsection
