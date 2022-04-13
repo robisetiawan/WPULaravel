@@ -54,4 +54,9 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id'); //user_id diubah menjadi author
         //satu post hanya bisa memliki 1 category
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
