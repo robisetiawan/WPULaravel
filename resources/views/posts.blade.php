@@ -29,8 +29,16 @@
 
     @if ($posts->count())
         <div class="card mb-3">
-            <img src="https://source.unsplash.com/1200x400?{{ $posts[0]->category->name }}" class="card-img-top"
-                alt="...">
+            @if ($posts[0]->image)
+                <div style="max-height: 350px; overflow:hidden">
+                    <img src="{{ asset('storage/' . $posts[0]->image) }}" class="card-img-top mt-3"
+                        alt="{{ $posts[0]->category->name }}">
+                </div>
+            @else
+                <img src="https://source.unsplash.com/1200x400?{{ $posts[0]->category->name }}" class="card-img-top"
+                    alt="{{ $posts[0]->category->name }}">
+            @endif
+
             <div class="card-body text-center">
                 <h3 class="card-title">{{ $posts[0]->title }}</h3>
                 <small class="text-muted">
@@ -51,6 +59,13 @@
                     <a href="/posts/{{ $post->slug }}" class="text-decoration-none">{{ $post->title }}</a>
                 </h2>
                 {{-- <h5>By : Robi Setiawan {{ $post->author }}</h5> --}}
+                @if ($post->image)
+                    <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top mt-3"
+                        alt="{{ $post->category->name }}">
+                @else
+                    <img src="https://source.unsplash.com/500x400?{{ $post->category->name }}" class="card-img-top"
+                        alt="{{ $post->category->name }}">
+                @endif
                 <h5>By <a href="/posts?author={{ $post->author->username }}">{{ $post->author->name }}</a> in <a
                         href="/posts?category={{ $post->category->slug }}">{{ $post->category->name }}</a></h5>
                 {!! $post->excerpt !!} {{-- menjalankan script html jg --}}
