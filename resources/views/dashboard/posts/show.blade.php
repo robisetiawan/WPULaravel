@@ -9,5 +9,5 @@
         <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" class="card-img-top mt-3" alt="...">
         {!! $post->body !!} {{-- menjalankan script html jg --}}
     </article>
-    <a href="/posts">kembali ke Post</a>
+    <a href="/dashboard/posts">kembali ke Post</a>
 @endsection
